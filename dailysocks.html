@@ -85,7 +85,10 @@
   </p>
   <img src="{payload.params.photo}" alt="{payload.params.caption}" class="photo__img" />
   <p class="photo__caption">{payload.params.caption}</p>
-  <p>{id}</p>
+  <p>
+  	<input type="text" value="{id}" id="{id}">
+  	<button onclick="copyImageID('{id}')">Copy Image_ID</button>
+  </p>
 </div>
 </script>
 
@@ -253,6 +256,15 @@ function download () {
   // request.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
   request.send(null);
 }
+
+function copyImageID(imageID) {
+	var copyText = document.getElementById(imageID);
+	copyText.select();
+	document.execCommand("copy");
+	alert("Copied the text: " + copyText.value);
+}
+
+
 
 setInterval(download, 15 * 60 * 1000);
 download();
